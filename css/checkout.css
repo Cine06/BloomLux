@@ -1,0 +1,50 @@
+
+.table-header {
+    padding: 36px;
+}
+
+.table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+
+
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-price {
+    color: #777;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+
+
+.total {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.total p {
+    font-weight: bold;
+    font-size: 18px;
+}

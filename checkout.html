@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #checkoutForm {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #checkoutForm label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        #checkoutForm input,
+        #checkoutForm textarea,
+        #checkoutForm select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        #checkoutForm div {
+            margin-bottom: 15px;
+        }
+
+        #placeOrderButton {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .bank-transfer-form {
+            display: none;
+        }
+
+        .bank-transfer-form label,
+        .bank-transfer-form input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BloomLux</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/tooplate-moso-interior.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" />
+    
+     <script src="js/checkout.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">BloomLux</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="index.html#section_2">About</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle click-scroll" href="#section_3"
+                            id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Shop</a>
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="shop-listing.html">Shop Listing</a></li>
+
+                            <li><a class="dropdown-item" href="shop-detail.html">Shop Detail</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="shopping-cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartItemCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header class="site-headers4 d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-12">
+                        <h1 class="hotdog">Information details</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="mofo cart-page">
+            <div class="table" style="border-bottom: 1px solid #ccc; font-weight: bold; font-size: 22px;">
+                <thead>
+                    <tr>
+                        <th class="table-header"><a style="padding-left: 75px;"> Item</a></th>
+                        <th class="table-header"><a style="padding-left: 125px;">Price</a></th>
+                        <th class="table-header"><a style="padding-left: 120px;">Quantity</a></th>
+                    </tr>
+                </thead>
+            </div>
+
+            <ul class="cart-items">
+                <li class="cart-item" id="cartItem0">
+                    <img src="product1.jpg" alt="Product 1" class="shop-image img-fluid">
+                    <div class="item-details">
+                        <p class="item-price"> ₱20.00</p>
+                        <p class="item-total">Total: ₱20.00</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="total">
+                <p>Total: ₱20.00</p>
+            </div>
+
+            <!-- Checkout Form -->
+         <form id="checkoutForm">
+                <label for="buyerName"><strong>Name:</strong></label>
+                <input type="text" id="buyerName" name="buyerName" required>
+
+                <label for="buyerAddress"><strong>Address:</strong></label>
+                <textarea id="buyerAddress" name="buyerAddress" rows="4" required></textarea>
+
+                <label for="paymentMode">Mode of Payment:</label>
+                <select id="paymentMode" name="paymentMode" onchange="togglePaymentInfo()" required>
+                    <option value="Cash On Delivery">Cash On Delivery</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="GCash">GCash</option>
+                </select>
+
+                <!-- Bank Transfer Form -->
+                <div class="bank-transfer-form" id="bankTransferForm">
+                    <label for="bankName"><strong>Bank Name:</strong></label>
+                    <input type="text" id="bankName" name="bankName">
+
+                    <label for="accountName"><strong>Account Name:</strong></label>
+                    <input type="text" id="accountName" name="accountName">
+
+                    <label for="accountNumber"><strong>Account Number:</strong></label>
+                    <input type="text" id="accountNumber" name="accountNumber">
+                </div>
+
+                <label id="gcashAccountInfo" style="display:none; font-weight: bold;"></label>
+                <div id="gcashInfo" style="display: none;">
+                    <p><b>GCash Account Number of BloomLux: 09123456789</b></p>
+                    <p><b>Account Name: BloomLux</b></p>
+                </div>
+
+                <label for="deliveryDate"><strong>Preferred Delivery Date:</strong></label>
+                <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+                <button id="placeOrderButton" class="btn btn-primary" type="button" onclick="placeOrder()">Place Order</button>
+            </form>
+
+            <!-- Order Summary -->
+            <div id="orderSummary" style="display: none; margin-top: 20px;">
+                <h2>Order Summary</h2>
+                <p><strong>Name:</strong> <span id="confirmName"></span></p>
+                <p><strong>Address:</strong> <span id="confirmAddress"></span></p>
+                <p><strong>Payment Mode:</strong> <span id="confirmPaymentMode"></span></p>
+                <p><strong>Delivery Date:</strong> <span id="confirmDeliveryDate"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1438 320">
+        <path fill="#36363e" fill-opacity="1"
+            d="M0,96L40,117.3C80,139,160,181,240,186.7C320,192,400,160,480,149.3C560,139,640,149,720,176C800,203,880,245,960,250.7C1040,256,1120,224,1200,229.3C1280,235,1360,277,1400,298.7L1440,320L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+        </path>
+    </svg>
+
+    <!-- Footer -->
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5 col-12 mb-3">
+                    <h3><a href="index.html" class="custom-link mb-1">BloomLux</a></h3>
+                    <p class="text-white">Where beauty meets craftsmanship, and every moment becomes a cherished memory
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-12 ms-lg-auto mb-3">
+                    <h3 class="hotdog mb-3">Store</h3>
+                    <p class="text-white mt-2">
+                        <i class="bi-geo-alt"></i> STI Caloocan
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mb-3">
+                    <h3 class="hotdog mb-3">Contact Info</h3>
+                    <p class="text-white mb-1">
+                        <i class="bi-telephone me-1"></i>
+                        <a href="tel: 090-080-0760" class="text-white">090-080-0760</a>
+                    </p>
+                    <p class="text-white mb-0">
+                        <i class="bi-envelope me-1"></i>
+                        <a href="mailto:info@company.com" class="text-white">bloomlux@company.com</a>
+                    </p>
+                </div>
+
+                <div class="col-lg-6 col-md-7 copyright-text-wrap col-12 d-flex flex-wrap align-items-center mt-4 ms-auto">
+                    <p class="copyright-text mb-0 me-4">Copyright © BloomLux 2023</p>
+                    <ul class="social-icon">
+                        <li class="social-icon-item">
+                            <a href="https://twitter.com/STICaloocan?fbclid=IwAR3D3adznjOyF2ESxBJEeV7G5WBvQtqQN0SEUIqNSpPyP90c5eosHAzm6mg"
+                                class="social-icon-link social-icon-twitter bi-twitter"></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="https://www.facebook.com/caloocan.sti.edu"
+                                class="social-icon-link social-icon-facebook bi-facebook"></a>
+                        </li>
+                        <li class="social-icon-item">
+                            <a href="https://www.instagram.com/sticaloocan?fbclid=IwAR0PY0KuH9XFfiPwUkG6uWrwG826szlXBw5a4Wg-QE-QytZ9OS0SN9Ds4Oc"
+                                class="social-icon-link social-icon-instagram bi-instagram"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous"></script>
+
+    <!-- JS SCRIPTS -->
+    <script>
+        var cartItems = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+        document.getElementById('cartItemCount').innerText = cartItems.length.toString();
+
+        function initializeInfoConfirmation() {
+            var orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+            document.getElementById('confirmName').textContent = orderDetails.buyerName;
+            document.getElementById('confirmAddress').textContent = orderDetails.buyerAddress;
+            document.getElementById('confirmPaymentMode').textContent = orderDetails.paymentMode;
+            document.getElementById('confirmDeliveryDate').textContent = orderDetails.deliveryDate;
+
+            var orderedItemsList = document.getElementById('orderedItems');
+            orderDetails.items.forEach(function (item) {
+                var listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - ₱${item.price.toFixed(2)} x ${item.quantity}`;
+                orderedItemsList.appendChild(listItem);
+
+            
+            });
+
+            localStorage.removeItem('orderDetails');
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeInfoConfirmation);
+    </script>
+
+</body>
+
+</html>
